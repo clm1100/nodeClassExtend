@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>测试axios与jquery的ajax</h1>
+    <script src="/jquery/dist/jquery.min.js"></script>
+    <script src="/axios/dist/axios.min.js"></script>
+    <script src="/qs/dist/qs.js"></script>
+    <script>
+   
+    var form = new FormData();
+    form.append("username",'root');
+    form.append("password",'12345');
+    // jquery的ajax上传formData不会自动设置"Content-Type: multipart/form-data;",并且还会对数据进行错误编码
+    // 需要额外设置两个参数属性processData 和contentType
+    // console.log(form)
+    //  $.ajax({
+    //     method:'post',
+    //     url:'/api/test',
+    //     data:form,
+    //     processData: false,  
+    //     contentType: false ,
+    //     success:function(data){
+    //         console.log(data.username)
+    //     }
+    // })
+
+    // axios上传formData数据会自动设置请求头 Content-Type: multipart/form-data; 
+    axios.post('/api/test',form,{
+    }).then((res)=>{
+        console.log(res);
+    })
+
+
+    </script>
+</body>
+</html>

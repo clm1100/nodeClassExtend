@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>测试axios与jquery的ajax</h1>
+    <script src="/jquery/dist/jquery.min.js"></script>
+    <script src="/axios/dist/axios.min.js"></script>
+    <script src="/qs/dist/qs.js"></script>
+    <script>
+        // jquery的ajax传递的第一种数据 对象;
+    // $.ajax({
+    //     method:'post',
+    //     url:'/api/test',
+    //     data:{username:"root",password:"12345"},
+    //     success:function(data){
+    //         console.log(data.username)
+    //     }
+    // })
+    // jQuery ajax传递数据的第二种格式查询字符串
+    // $.ajax({
+    //     method:'post',
+    //     url:'/api/test',
+    //     data:"username=root&password=12345",
+    //     success:function(data){
+    //         console.log(data.username)
+    //     }
+    // })
+
+
+    // 总结以上两种方式默认的发送的数据是 "Content-Type": "application/x-www-form-urlencoded"
+
+    //  $.ajax({
+    //     method:'post',
+    //     url:'/api/test',
+    //     data:JSON.stringify({username:"root",password:"12345"}),
+    //     success:function(data){
+    //         console.log(data.username)
+    //     }
+    // })
+
+    //   $.ajax({
+    //     method:'post',
+    //     url:'/api/test',
+    //     contentType: "application/json; charset=utf-8",
+    //     data:JSON.stringify({username:"root",password:"12345"}),
+    //     success:function(data){
+    //         console.log(data.username)
+    //     }
+    // })
+    // axios 默认会将对象转化为json字符串进行传递,并默认设置 "Content-Type: application/json;charset=UTF-8"
+    // axios.post('/api/test',{username:"root",password:'123456'}).then((res)=>{
+    //     console.log(res);
+    // })
+    // axios.post('/api/test',"username=root&password=12345",{
+    //     headers: {"Content-Type": "application/x-www-form-urlencoded"},
+    // }).then((res)=>{
+    //     console.log(res);
+    // })
+    
+    // 每次发送不能手动拼接啊,用到一个库;qs
+    //  axios.post('/api/test',Qs.stringify({username:"root",password:"12345"}),{
+    //     headers: {"Content-Type": "application/x-www-form-urlencoded"},
+    // }).then((res)=>{
+    //     console.log(res);
+    // })
+    // 每次发送都需要去处理数据，和设置请求头很烦,全局配置一下;
+    // axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+    // axios.defaults.transformRequest = [function (data, headers) {
+    //     // Do whatever you want to transform the data
+    //     return Qs.stringify(data);
+    // }]
+
+    // axios.post('/api/test',{username:"root",password:"12345"},{
+    // }).then((res)=>{
+    //     console.log(res);
+    // })
+
+
+    </script>
+</body>
+</html>
