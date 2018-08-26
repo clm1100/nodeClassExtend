@@ -13,8 +13,8 @@ app.use(session({
 }))
 
 app.get('/',(req,res)=>{
-    req.session.user = {name:123}
-    console.log(req.session)
+    // req.session.user = {name:123}
+    // console.log(req.session)
     res.send('ok')
 })
 
