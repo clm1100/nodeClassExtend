@@ -18,9 +18,20 @@ app.get('/',(req,res)=>{
     res.send('ok')
 })
 
+const islogin = (req,res,next)=>{
+    if(req.session.islogin===true){
+        next()
+    }else{
+        res.send("未登录")
+    }
+}
+
 app.post('/login',(req,res)=>{
     if(req.body.username=='zs'&&req.body.password==1234){
-
+        req.session = {user:'zs',password:1234}
+        res.send("ok")
+    }else{
+        res.send("falie")
     }
 })
 
