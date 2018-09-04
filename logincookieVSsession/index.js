@@ -13,14 +13,23 @@ app.set('views','./views');
 app.use(bodyParser.urlencoded({extended:false}))
 app.use(cookieParser());
 app.use(session({
-    resave:true,
-    saveUninitialized:true,
+    resave:false,
+    saveUninitialized:false,
     secret:'abc'
 }))
 
-app.get('/',(req,res)=>{
+
+app.use((req,res,next)=>{
+    console.log(req.session.user)
     res.locals = req.session.user;
-    res.render('index');
+    console.log(res.locals)
+    next()
+})
+
+
+app.get('/',(req,res)=>{
+    console.log(res.locals,"========");
+    res.render('index',{a:'2323232'});
 })
 
 const islogin = (req,res,next)=>{
@@ -32,8 +41,8 @@ const islogin = (req,res,next)=>{
     }
 }
 
-app.post('/login',(req,res)=>{
-    if(req.body.username=='zs'&&req.body.password==1234){
+app.get('/login/:username/:password',(req,res)=>{
+    if(req.params.username=='zs'&&req.params.password==1234){
         req.session.user = {user:'zs',password:1234}
         req.session.islogin = true;
         res.send("ok")
