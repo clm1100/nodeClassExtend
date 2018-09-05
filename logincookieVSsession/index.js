@@ -3,11 +3,14 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const template = require('express-art-template');
+const ejs = require('ejs');
 
-
+console.log(ejs);
 const app  = express()
-app.engine('html',template);
+// app.engine('html',template);
+app.engine('html',ejs.__express);
 app.set('view engine','html');
+
 app.set('views','./views');
 
 app.use(bodyParser.urlencoded({extended:false}))
